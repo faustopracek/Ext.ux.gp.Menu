@@ -1,6 +1,6 @@
 Ext.define('Ext.ux.gp.Menu', {
     extend: 'Ext.Panel',
-    xtype:'gpmenupanel',
+    xtype:'gpmenu',
     maxHeight:null,
     config: {
         modal: true,

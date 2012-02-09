@@ -1,0 +1,51 @@
+==============
+Ext.ux.gp.Menu (gpmenu)
+==============
+
+It creates a panel menù sized by items count.
+
+Example:
+--------
+
+menuPanel=Ext.create('Ext.ux.gp.Menu');
+store=menuPanel.down('list').getStore();
+store.removeAll();
+var data=[];
+data.push({id:1,descr:"Dettaglio"});
+data.push({id:2,descr:"Mappa"});
+menuPanel.on('itemtap','viewCustomersMenuItemSelected',this);
+menuPanel.setTitle('Opzioni');
+menuPanel.setMaxHeight('50%');
+menuPanel.show();
+store.add(data);
+
+--------
+METHODS:
+--------
+*** resize() ***
+Used for to force the menù resize. Usually this method is called by the component and it is not necessary an explicit calling.
+
+*** getTitle:function() ***
+It returns the menù toolbar title.
+
+*** setTitle:function(String value, [Boolean showCloseButton],[String closeButtonText]) ***
+It sets the menu toolbar.
+  value: Toolbar title. If it is 'null' the tollbar is hidden. (Default value: null)
+  showCloseButton: if it is true the close button in menù toolbar is allowed. (Default value: true)
+  closeButtonText: It sets the close button text in menù toolbar. (Default value: 'Close')
+
+*** getMaxHeight:function(String value) ***
+It returns the menù max height.
+
+*** setMaxHeight:function(String value) ***
+It sets the max menù height.
+
+
+-------
+EVENTS:
+-------
+*** itemtap( Ext.dataview.DataView this, Number index, Ext.Element/Ext.dataview.component.DataItem target, Ext.data.Model record, Ext.EventObject e, Object eOpts) ***
+It fires whenever an item is tapped.
+
+*** resize(Ext.Component this) ***
+It fires whenever the menù is resized.
