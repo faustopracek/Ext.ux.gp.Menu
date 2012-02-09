@@ -1,7 +1,6 @@
 Ext.define('Ext.ux.gp.Menu', {
     extend: 'Ext.Panel',
     xtype:'gpmenu',
-    maxHeight:null,
     config: {
         modal: true,
         hideOnMaskTap: true,
@@ -9,6 +8,7 @@ Ext.define('Ext.ux.gp.Menu', {
         height: '50%',
         width: '70%',
         layout:'fit',
+        maxHeight:null,
         items:[
                {
                    xtype:'toolbar',
@@ -65,21 +65,21 @@ Ext.define('Ext.ux.gp.Menu', {
         }
         itemHeight=this.down('*[xtype=list]').element.down('.x-list-item').getHeight();
         var maxHeight='100%';
-        if(this.maxHeight!=null){
-            maxHeight=this.maxHeight;
+        if(this.config.maxHeight!=null){
+            maxHeight=this.config.maxHeight;
         }
         
         if(maxHeight.indexOf('px')>-1){
-            maxHeight=this.maxHeight.replace('px','');
+            maxHeight=this.config.maxHeight.replace('px','');
             maxHeight=parseInt(100*maxHeight/Ext.getBody().getHeight())+'%';
         }
         else{
             if(maxHeight.indexOf('%')<0){
-                maxHeight=this.maxHeight+'%';
+                maxHeight=this.config.maxHeight+'%';
             }
         }
         maxHeight=parseInt(Ext.getBody().getHeight()*parseInt(maxHeight.replace('%',''))/100);
-        this.setHeight(this.maxHeight);
+        this.setHeight(this.config.maxHeight);
         var titleBar=0;
         if(!this.down('*[xtype=toolbar]').isHidden()){
             titleBar=1;
@@ -113,10 +113,10 @@ Ext.define('Ext.ux.gp.Menu', {
         return this.down('*[xtype=toolbar]').getTitle();
     },
     setMaxHeight:function(value){
-        this.maxHeight=value;
+        this.config.maxHeight=value;
         this.resize();
     },
     getMaxHeight:function(){
-        return this.maxHeight;
+        return this.config.maxHeight;
     }
 });
