@@ -44,9 +44,12 @@ Ext.define('Ext.ux.gp.Menu', {
                 })
         });
         menuList.on('itemtap',function(sender, index, target, record, e, eOpts){this.fireEvent('itemtap',sender, index, target, record, e, eOpts );this.destroy()},this);
-        menuList.getStore().on('load','_storeChanged',this);
-        menuList.getStore().on('addrecords','_storeChanged',this);
-        menuList.getStore().on('clear','_storeChanged',this);
+        menuList.getStore().on({
+            scope:this,
+            load:'_storeChanged',
+            addrecords:'_storeChanged',
+            clear:'_storeChanged'
+        });
         menuList.on('painted','resize',this);
         this.on('erased',function(){this.destroy();},this)
         this.add(menuList);
